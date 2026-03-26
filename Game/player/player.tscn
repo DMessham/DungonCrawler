@@ -1,21 +1,224 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0ekxxogjmxvh"]
+[gd_scene format=3 uid="uid://b0ekxxogjmxvh"]
 
 [ext_resource type="Script" uid="uid://dtt84d84mgcn7" path="res://Game/player/player.gd" id="1_3780m"]
+[ext_resource type="Script" uid="uid://gtjm8bvnc7v4" path="res://Game/player/player_info.gd" id="2_4pukw"]
+[ext_resource type="Script" uid="uid://r0rqv3t6egun" path="res://Game/player/debug_info.gd" id="3_sxcir"]
+[ext_resource type="Texture2D" uid="uid://dp2fdqjbwrc01" path="res://Titles.png" id="4_sc73p"]
+[ext_resource type="PackedScene" uid="uid://b7yc03naufag0" path="res://Game/Map/map.tscn" id="5_f8wrw"]
+[ext_resource type="Texture2D" uid="uid://bc85rl8djljh2" path="res://icon.svg" id="6_1b08y"]
+[ext_resource type="Script" uid="uid://barvlmk4ff3qa" path="res://Game/Map/map.gd" id="7_1b08y"]
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_50lqk"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_4pukw"]
+
+[sub_resource type="Theme" id="Theme_1rr36"]
+
+[sub_resource type="Gradient" id="Gradient_uv2qt"]
+colors = PackedColorArray(0, 0, 0, 0.47843137, 0.21, 0.21, 0.21, 0.4392157)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4ys5o"]
+frequency = 0.0835
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_x82ud"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_4ys5o")
+color_ramp = SubResource("Gradient_uv2qt")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="Theme" id="Theme_1b08y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1b08y"]
+atlas = ExtResource("4_sc73p")
+region = Rect2(160, 112, 48, 48)
+
+[node name="Player" type="CharacterBody3D" unique_id=1034070140]
 script = ExtResource("1_3780m")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=619497233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.279261)
 near = 0.001
 far = 5000.0
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=234052121]
 light_energy = 0.5
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=785782594]
 light_energy = 0.5
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
 
-[node name="Ray_front" type="RayCast3D" parent="."]
+[node name="Ray_front" type="RayCast3D" parent="." unique_id=1458252436]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -0.6, 0)
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=458114998]
+shape = SubResource("CapsuleShape3D_50lqk")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="playerInfo" type="Label" parent="." unique_id=381501170]
+offset_right = 40.0
+offset_bottom = 49.0
+text = "X: 0
+Y: 0"
+label_settings = SubResource("LabelSettings_4pukw")
+script = ExtResource("2_4pukw")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="debugInfo" type="Label" parent="." unique_id=1120592886]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 49.0
+grow_horizontal = 0
+text = "[FRAMEDELTA]"
+label_settings = SubResource("LabelSettings_4pukw")
+script = ExtResource("3_sxcir")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="minimap" type="CanvasLayer" parent="." unique_id=999339763]
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="minimap" type="MarginContainer" parent="minimap" unique_id=1060602519]
+offset_left = 895.0
+offset_top = 392.0
+offset_right = 935.0
+offset_bottom = 432.0
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="clip" type="MarginContainer" parent="minimap/minimap" unique_id=1263464631]
+clip_contents = true
+custom_minimum_size = Vector2(256, 265)
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="grid" type="TextureRect" parent="minimap/minimap/clip" unique_id=515908068]
+show_behind_parent = true
+clip_contents = true
+custom_minimum_size = Vector2(16, 16)
+layout_direction = 2
+layout_mode = 2
+theme = SubResource("Theme_1rr36")
+texture = SubResource("NoiseTexture2D_x82ud")
+stretch_mode = 1
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="CenterContainer" type="CenterContainer" parent="minimap/minimap/clip" unique_id=222970521]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="Map" parent="minimap/minimap/clip/CenterContainer" unique_id=1818354652 instance=ExtResource("5_f8wrw")]
+scale = Vector2(0.5, 0.5)
+
+[node name="player" type="Sprite2D" parent="minimap/minimap/clip/CenterContainer" unique_id=1517696613]
+position = Vector2(-5.999999, -6.999999)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_1b08y")
+centered = false
+script = ExtResource("7_1b08y")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="frame" type="NinePatchRect" parent="minimap/minimap" unique_id=158758145]
+clip_contents = true
+layout_mode = 2
+theme = SubResource("Theme_1b08y")
+texture = SubResource("AtlasTexture_1b08y")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[connection signal="posChange" from="." to="playerInfo" method="_on_player_pos_change"]
+[connection signal="posChange" from="." to="minimap/minimap/clip/CenterContainer/Map" method="_on_player_pos_change"]

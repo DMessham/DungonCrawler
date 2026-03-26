@@ -6,6 +6,13 @@ extends CharacterBody3D
 @onready var forward: = $Ray_front
 @onready var camera = $Camera3D
 
+var health = 100
+var mana = 100
+var inventory = []
+
+
+signal posChange
+
 var is_rotating := false
 
 const SPEED = 100
@@ -32,6 +39,9 @@ func _input(event):
 		rotate_and_set_direction(-90)
 	if event.is_action_pressed("ui_down"):
 		rotate_and_set_direction(180)
+	
+func _process(delta: float) -> void:
+	posChange.emit(global_transform.origin.x,global_transform.origin.z,rotation_degrees.y, health, mana, inventory)
 
 
 func rotate_and_set_direction(angle_delta: float):
@@ -42,3 +52,6 @@ func rotate_and_set_direction(angle_delta: float):
 	await tween.finished
 	direction = -global_transform.basis.z.normalized()
 	is_rotating = false
+	
+	
+	

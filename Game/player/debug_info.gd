@@ -1,0 +1,15 @@
+extends Label
+var fps
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+var stringTemp = "last frame took: %s"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	fps=delta
+	text = stringTemp % fps
+	pass

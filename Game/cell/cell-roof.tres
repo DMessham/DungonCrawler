@@ -1,13 +1,13 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://drxu88g34gafy"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://nc2l7quwsir5"]
 
 [sub_resource type="Gradient" id="Gradient_3v03e"]
 interpolation_mode = 2
-colors = PackedColorArray(0, 0.21539502, 0.26404184, 1, 0.37099996, 0.4717, 0.53, 1)
+colors = PackedColorArray(0.13060546, 0.24126258, 0.13082895, 1, 0.23399998, 0.4212, 0.45, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wvs3c"]
-noise_type = 0
+noise_type = 2
 seed = 4
-frequency = 0.0222
+frequency = 0.0112
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f04hc"]
 noise = SubResource("FastNoiseLite_wvs3c")
@@ -32,7 +32,7 @@ normalize = false
 seamless = true
 
 [resource]
-albedo_color = Color(0.49815553, 0.7701754, 0.90907073, 1)
+albedo_color = Color(0.6904716, 0.7371697, 0.7596091, 1)
 albedo_texture = SubResource("NoiseTexture2D_f04hc")
 metallic = 0.2
 metallic_specular = 0.18

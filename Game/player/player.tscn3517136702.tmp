@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://b0ekxxogjmxvh"]
+
+[ext_resource type="Script" uid="uid://dtt84d84mgcn7" path="res://Game/player/player.gd" id="1_3780m"]
+[ext_resource type="Script" uid="uid://gtjm8bvnc7v4" path="res://Game/player/player_info.gd" id="2_4pukw"]
+[ext_resource type="Script" uid="uid://r0rqv3t6egun" path="res://Game/player/debug_info.gd" id="3_sxcir"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_50lqk"]
+radius = 0.25
+height = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_4pukw"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1034070140]
+script = ExtResource("1_3780m")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=619497233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.279261)
+near = 0.001
+far = 5000.0
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=234052121]
+light_energy = 0.5
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=785782594]
+light_energy = 0.5
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="Ray_front" type="RayCast3D" parent="." unique_id=1458252436]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -0.6, 0)
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=458114998]
+shape = SubResource("CapsuleShape3D_50lqk")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="playerInfo" type="Label" parent="." unique_id=381501170]
+offset_right = 40.0
+offset_bottom = 49.0
+text = "X: 0
+Y: 0"
+label_settings = SubResource("LabelSettings_4pukw")
+script = ExtResource("2_4pukw")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[node name="debugInfo" type="Label" parent="." unique_id=1120592886]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 49.0
+grow_horizontal = 0
+text = "[FRAMEDELTA]"
+label_settings = SubResource("LabelSettings_4pukw")
+script = ExtResource("3_sxcir")
+metadata/logic_bricks_graph = {
+"connections": [],
+"next_id": 0,
+"nodes": []
+}
+metadata/logic_bricks_frames = []
+
+[connection signal="posChange" from="." to="playerInfo" method="_on_player_pos_change"]
