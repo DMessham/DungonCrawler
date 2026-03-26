@@ -10,7 +10,7 @@ var health = 100
 var mana = 100
 var inventory = []
 
-var frameTime = 0.3
+var frameTime = 0.03
 
 var newX = global_transform.origin.x
 var newZ = global_transform.origin.z
@@ -21,7 +21,7 @@ var is_rotating := false
 
 const SPEED = 100
 
-const moveSpeed = 1
+const moveSpeed = 0.0025
 
 func collision_check(directionw):
 	if directionw != null:
@@ -35,8 +35,8 @@ func move():
 
 	rotation_degrees.y = round(rotation_degrees.y) 
 	if !forward.is_colliding():
-		newX = global_transform.origin.x + direction.x
-		newZ = global_transform.origin.z + direction.z
+		newX = round(global_transform.origin.x) + direction.x
+		newZ = round(global_transform.origin.z) + direction.z
 
 func _input(event):
 	if is_rotating:
@@ -55,13 +55,13 @@ func _process(delta: float) -> void:
 	frameTime = delta
 	
 	if(global_transform.origin.x < newX) && !(forward.is_colliding()):
-		global_transform.origin.x+=moveSpeed*frameTime
+		global_transform.origin.x+=moveSpeed/frameTime
 	if(global_transform.origin.x > newX) && !(forward.is_colliding()):
-		global_transform.origin.x-=moveSpeed*frameTime
+		global_transform.origin.x-=moveSpeed/frameTime
 	if(global_transform.origin.z < newZ) && (!forward.is_colliding()):
-		global_transform.origin.z+=moveSpeed*frameTime
+		global_transform.origin.z+=moveSpeed/frameTime
 	if(global_transform.origin.z > newZ) && (!forward.is_colliding()):
-		global_transform.origin.z-=moveSpeed*frameTime
+		global_transform.origin.z-=moveSpeed/frameTime
 
 
 func rotate_and_set_direction(angle_delta: float):

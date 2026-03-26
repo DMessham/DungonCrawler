@@ -10,7 +10,9 @@ var stringTemp = "DMessham's Dungeon\nx: %s\ny: %s\ndir: %s\nfps: %s\nhealth: %s
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	fps=delta*3600
+#	0.0166666 = 60fps
+#	0.0333333 = 30fps
+	fps=1/(delta)
 	text = stringTemp % [coordX, coordY, direction, fps, hp, mp]
 	pass
 
