@@ -21,7 +21,7 @@ var is_rotating := false
 
 const SPEED = 100
 
-const moveSpeed = 0.0033333333333
+const moveSpeed = 0.001
 
 func collision_check(directionw):
 	if directionw != null:
@@ -30,14 +30,14 @@ func collision_check(directionw):
 		return false
 
 func move():
-	#global_transform.origin.x = round(newX)
-	#global_transform.origin.z = round(newZ)
 
 	rotation_degrees.y = round(rotation_degrees.y) 
 	if !forward.is_colliding():
 		newX = round(global_transform.origin.x) + direction.x
 		newZ = round(global_transform.origin.z) + direction.z
 
+	global_transform.origin.x = round(newX)
+	global_transform.origin.z = round(newZ)
 func _input(event):
 	if is_rotating:
 		return
@@ -52,20 +52,20 @@ func _input(event):
 	
 func _process(delta: float) -> void:
 	posChange.emit(global_transform.origin.x,global_transform.origin.z,rotation_degrees.y, health, mana, inventory)
-	frameTime = 0.001/(delta)
+	frameTime = 0.00003333333/(delta)
 	
-	if(global_transform.origin.x < newX -moveSpeed/frameTime) && !(forward.is_colliding()):
-		global_transform.origin.x+=moveSpeed/frameTime
-	elif(global_transform.origin.x > newX+moveSpeed/frameTime) && !(forward.is_colliding()):
-		global_transform.origin.x-=moveSpeed/frameTime
-	else:
-		global_transform.origin.x = round(global_transform.origin.x)
-	if(global_transform.origin.z < newZ-moveSpeed/frameTime) && (!forward.is_colliding()):
-		global_transform.origin.z+=moveSpeed/frameTime
-	elif(global_transform.origin.z > newZ+moveSpeed/frameTime) && (!forward.is_colliding()):
-		global_transform.origin.z-=moveSpeed/frameTime
-	else:
-		global_transform.origin.z = round(global_transform.origin.z)
+	#if(global_transform.origin.x < newX -moveSpeed/frameTime) && !(forward.is_colliding()):
+		#global_transform.origin.x+=moveSpeed/frameTime
+	#elif(global_transform.origin.x > newX+moveSpeed/frameTime) && !(forward.is_colliding()):
+		#global_transform.origin.x-=moveSpeed/frameTime
+	#else:
+		#global_transform.origin.x = round(global_transform.origin.x)
+	#if(global_transform.origin.z < newZ-moveSpeed/frameTime) && (!forward.is_colliding()):
+		#global_transform.origin.z+=moveSpeed/frameTime
+	#elif(global_transform.origin.z > newZ+moveSpeed/frameTime) && (!forward.is_colliding()):
+		#global_transform.origin.z-=moveSpeed/frameTime
+	#else:
+		#global_transform.origin.z = round(global_transform.origin.z)
 		
 
 

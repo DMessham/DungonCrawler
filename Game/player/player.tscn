@@ -133,21 +133,30 @@ metadata/logic_bricks_graph = {
 metadata/logic_bricks_frames = []
 
 [node name="minimap" type="MarginContainer" parent="minimap" unique_id=1060602519]
-offset_left = 895.0
-offset_top = 392.0
-offset_right = 935.0
-offset_bottom = 432.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -192.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_vertical = 8
 metadata/logic_bricks_graph = {
 "connections": [],
 "next_id": 0,
 "nodes": []
 }
 metadata/logic_bricks_frames = []
+metadata/_edit_use_anchors_ = true
 
 [node name="clip" type="MarginContainer" parent="minimap/minimap" unique_id=1263464631]
 clip_contents = true
-custom_minimum_size = Vector2(256, 265)
+custom_minimum_size = Vector2(192, 192)
 layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -191,7 +200,7 @@ scale = Vector2(0.5, 0.5)
 
 [node name="player" type="Sprite2D" parent="minimap/minimap/clip/CenterContainer" unique_id=1517696613]
 position = Vector2(-5.999999, -6.999999)
-scale = Vector2(0.1, 0.1)
+scale = Vector2(0.075, 0.075)
 texture = ExtResource("6_1b08y")
 centered = false
 script = ExtResource("7_1b08y")
