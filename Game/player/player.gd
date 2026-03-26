@@ -21,7 +21,7 @@ var is_rotating := false
 
 const SPEED = 100
 
-const moveSpeed = 0.0025
+const moveSpeed = 0.0033333333333
 
 func collision_check(directionw):
 	if directionw != null:
@@ -52,16 +52,21 @@ func _input(event):
 	
 func _process(delta: float) -> void:
 	posChange.emit(global_transform.origin.x,global_transform.origin.z,rotation_degrees.y, health, mana, inventory)
-	frameTime = delta
+	frameTime = 0.001/(delta)
 	
-	if(global_transform.origin.x < newX) && !(forward.is_colliding()):
+	if(global_transform.origin.x < newX -moveSpeed/frameTime) && !(forward.is_colliding()):
 		global_transform.origin.x+=moveSpeed/frameTime
-	if(global_transform.origin.x > newX) && !(forward.is_colliding()):
+	elif(global_transform.origin.x > newX+moveSpeed/frameTime) && !(forward.is_colliding()):
 		global_transform.origin.x-=moveSpeed/frameTime
-	if(global_transform.origin.z < newZ) && (!forward.is_colliding()):
+	else:
+		global_transform.origin.x = round(global_transform.origin.x)
+	if(global_transform.origin.z < newZ-moveSpeed/frameTime) && (!forward.is_colliding()):
 		global_transform.origin.z+=moveSpeed/frameTime
-	if(global_transform.origin.z > newZ) && (!forward.is_colliding()):
+	elif(global_transform.origin.z > newZ+moveSpeed/frameTime) && (!forward.is_colliding()):
 		global_transform.origin.z-=moveSpeed/frameTime
+	else:
+		global_transform.origin.z = round(global_transform.origin.z)
+		
 
 
 func rotate_and_set_direction(angle_delta: float):
